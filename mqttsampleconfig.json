@@ -1,0 +1,7 @@
+{
+  "MqttServerAddress": "",
+  "MqttServerPort": "",
+  "ClientId": "",
+  "UserName": "",
+  "Password" : ""
+}
