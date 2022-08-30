@@ -11,7 +11,7 @@ using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using Newtonsoft.Json;
 
-namespace CopaData.Drivers.BVB-IOT.Mqtt
+namespace CopaData.Drivers.BVBIOT.Mqtt
 {
     public class DriverExtension : IDriverExtension
     {
@@ -34,7 +34,8 @@ namespace CopaData.Drivers.BVB-IOT.Mqtt
 
             var configuration = GetConfiguration(configFilePath);
             var serverAddress = configuration["MqttServerAddress"] ?? "127.0.0.1";
-            var serverPort = configuration["MqttServerPort"] ?? "1883";
+            // TODO: parse string and convert to int
+            // var serverPort = configuration["MqttServerPort"] ?? "1883";
             var clientId = configuration["ClientId"] ?? "myLocalClientId";
             var userName = configuration["UserName"] ?? "";
             var password = configuration["Password"] ?? "";
@@ -42,7 +43,7 @@ namespace CopaData.Drivers.BVB-IOT.Mqtt
             // Create TCP based options using the builder.
             var options = new MqttClientOptionsBuilder()
                 .WithClientId(clientId)
-                .WithTcpServer(serverAddress, serverPort)
+                .WithTcpServer(serverAddress, 1883)
                 .WithCredentials(userName, password)
                 .WithTls()
                 .WithCleanSession()
@@ -133,7 +134,7 @@ namespace CopaData.Drivers.BVB-IOT.Mqtt
             var payloadString = JsonConvert.SerializeObject(sensorPayload);
 
             var message = new MqttApplicationMessageBuilder()
-              .WithTopic(symbolicAddress)sa
+              .WithTopic(symbolicAddress)
               .WithPayload(payloadString)
               .WithExactlyOnceQoS()
               .WithRetainFlag()

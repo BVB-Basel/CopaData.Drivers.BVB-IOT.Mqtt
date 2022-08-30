@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CopaData.Drivers.BVB-IOT.Mqtt
+namespace CopaData.Drivers.BVBIOT.Mqtt
 {
     public class SensorPayload
     {
